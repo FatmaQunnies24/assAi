@@ -21,7 +21,7 @@ for row in grid:
         elif room[1] == 1:
             total_cost += g(room[0])
 
-print("Cost", total_cost)
+print("Cost BFS", total_cost)
 
 
 
@@ -54,3 +54,26 @@ for col in range(num_cols):
             total_cost_DFS += g(room[0])
 
 print("Cost (DFS):", total_cost_DFS)
+
+
+
+#A*
+def H(x):
+    return x
+
+total_cost_A_star = 0
+
+num_rows = len(grid)
+num_cols = len(grid[0])
+
+for col in range(num_cols):
+    for row in range(num_rows):
+        room = grid[row][col]
+        if room is None:
+            total_cost_A_star += 1
+        elif room[1] == -1:
+            total_cost_A_star += 2 * (g(room[0]) + H(room[0]))
+        elif room[1] == 1:
+            total_cost_A_star += g(room[0]) + H(room[0])
+
+print("Cost (A*):", total_cost_A_star)
